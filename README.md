@@ -7,4 +7,5 @@ IDE 使用的是MPlab X
 
 功能
        LCD显示， LCD为hd44780
+       EEPROM：24C04
        MSSP模块实现的I2C主模式与EEPROM通信
