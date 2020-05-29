@@ -25,7 +25,7 @@ void main(void) {
     i2c_init();
     initLcd();
     
-    char status=eeprom_wb(0x00,'Y');
+    char status=eeprom_wb(0x00,0x19);
     
    
     

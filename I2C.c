@@ -23,8 +23,7 @@ void i2c_init() {
     SSPCONbits.SSPM1 = 0;
     SSPCONbits.SSPM0 = 0;
     //
-    TRISC3 = 1; //将SCL设置为输入
-    TRISC4 = 1; //将SDA设置为输入
+  
 
     //初始化状态寄存器
     SSPSTAT = 0x80; //使用标准100Khz到1Mhz之间
@@ -51,6 +50,7 @@ void i2c_start() {
     while (SSPSTATbits.R_nW | SSPCON2bits.SEN);
     SSPCON2bits.SEN = 1;
     while (SSPCON2bits.SEN == 1); //等待启动完毕
+   
     SSPIF = 0;
 }
 
