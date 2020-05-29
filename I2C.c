@@ -22,8 +22,7 @@ void i2c_init() {
     SSPCONbits.SSPM2 = 0;
     SSPCONbits.SSPM1 = 0;
     SSPCONbits.SSPM0 = 0;
-    //
-  
+    //SCL与SDA由硬件控制
 
     //初始化状态寄存器
     SSPSTAT = 0x80; //使用标准100Khz到1Mhz之间
