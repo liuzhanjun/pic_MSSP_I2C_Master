@@ -51,7 +51,6 @@ void i2c_start() {
     while (SSPSTATbits.R_nW | SSPCON2bits.SEN);
     SSPCON2bits.SEN = 1;
     while (SSPCON2bits.SEN == 1); //等待启动完毕
-    while (SSPIF == 0); //等待发生中断
     SSPIF = 0;
 }
 
@@ -90,6 +89,5 @@ char i2c_read(char ack) {
 void i2c_stop() {
     SSPCON2bits.PEN = 1;
     while (SSPCON2bits.PEN == 1); //等待停止为完成
-    while (SSPIF == 0); //等待发生中断
     SSPIF = 0;
 }

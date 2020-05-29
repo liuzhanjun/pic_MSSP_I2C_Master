@@ -25,11 +25,11 @@ void main(void) {
     i2c_init();
     initLcd();
     
-    char status=eeprom_wb(0x01F0,'Y');
+    char status=eeprom_wb(0x00,'Y');
     
    
     
-    char result=eeprom_rb(0x01F0);
+    char result=eeprom_rb(0x00);
     showLcd(&result,0);
     while(1);
     return;
