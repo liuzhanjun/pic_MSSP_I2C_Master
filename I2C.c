@@ -36,9 +36,9 @@ void i2c_init() {
     //初始化SSPCON2
     SSPCON2 = 0x00;
     //    中断使能
-    GIE = 0;
-    PEIE = 1;
-    SSPIE = 1;
+    //    GIE = 0;
+    //    PEIE = 1;
+    //    SSPIE = 1;
     //清除中断标志
     SSPIF = 0;
     SSPCONbits.SSPEN = 1; //SSP使能，将RC3,RC4作为串口引脚
@@ -51,11 +51,9 @@ void i2c_start() {
     while (SSPSTATbits.R_nW | SSPCON2bits.SEN);
     SSPCON2bits.SEN = 1;
     while (SSPCON2bits.SEN == 1); //等待启动完毕
-
+    while (SSPIF == 0); //等待发生中断
     SSPIF = 0;
 }
-
-
 
 char i2c_write(uint8_t data) {
     while (!BF) {
@@ -92,5 +90,6 @@ char i2c_read(char ack) {
 void i2c_stop() {
     SSPCON2bits.PEN = 1;
     while (SSPCON2bits.PEN == 1); //等待停止为完成
+    while (SSPIF == 0); //等待发生中断
     SSPIF = 0;
 }
